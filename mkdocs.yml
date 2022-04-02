@@ -1,49 +1,19 @@
 ---
-site_name: Donkey Car
+site_name: Donkey Car 中文说明
 theme: readthedocs
 
-repo_url: https://github.com/autorope/donkeydocs/
-edit_uri: edit/master/docs
-extra_css:
-  - extra.css
-
 nav:
-  - Home: index.md
-  - User Guide:
-      - 'Build a car.': guide/build_hardware.md
-      - 'Install the software.': guide/install_software.md
-      - 'Create Donkeycar App.': guide/create_application.md
-      - 'Calibrate steering and throttle.': guide/calibrate.md
-      - 'Get driving.': guide/get_driving.md
-      - 'Train an autopilot.': guide/train_autopilot.md
-      - 'Dataset and pre-trained models': guide/dataset_pretrained_models.md
-      - 'Donkey Simulator.': guide/simulator.md
-      - 'Virtual Race League.': guide/virtual_race_league.md
-      - 'Mobile app': guide/mobile_app.md
-  - Parts:
-      - 'About': parts/about.md
-      - 'Actuators': parts/actuators.md
-      - 'Controllers': parts/controllers.md
-      - 'Odometry/encoders': parts/odometry.md
-      - 'RC Hat': parts/rc_hat.md
-      - 'Keras': parts/keras.md
-      - 'Stores': parts/stores.md
-      - 'IMU': parts/imu.md
-      - 'Lidar': parts/lidar.md
-      - 'OLED': parts/oled.md
-      - 'Voice Control': parts/voice_control.md
-      - 'Stop Sign Detection': parts/stop_sign_detection.md
-      - 'Path following with the Intel Realsense T265': parts/path_following.md
-  - Utilities:
-      - 'donkey': utility/donkey.md
-      - 'UI': utility/ui.md
-  - Developer Guide:
-      - 'Create your own model': dev_guide/model.md
-
-  - Supported Cars: supported_cars.md
-  - Roll Your Own: roll_your_own.md
-  - Contribute: contribute.md
-  - Tests: tests.md
-  - Releases: release.md
-  - FAQ: faq.md
-  - Legacy: legacy.md
+  - Wiki文档目录: index.md
+  - 赛事简介: wiki/intro.md
+  - 比赛规则: wiki/rules.md
+  - 活动流程: wiki/agenda.md
+  - 驴车软件架构: wiki/software_arch.md
+  - 驴车硬件架构: wiki/hardware_arch.md
+  - 驴车RC架构: wiki/rc_arch.md
+  - 驾驶技巧: wiki/drive_tips.md
+  - 驴车操作流程: wiki/dk_process.md
+  - 工作文档目录: work/workflow.md
+  - 计时软件使用方法: work/timer.md 
+  - 裁判培训: work/judge.md
+  - S2赛季策划: work/race_S2.md 
+  - 关于我们: wiki/aboutus.md
