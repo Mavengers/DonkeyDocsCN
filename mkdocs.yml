@@ -4,9 +4,9 @@ theme: readthedocs
 
 nav:
   - 首页: index.md
-  - 硬件架构: wiki/hardware_arch.md
-  - 软件架构: wiki/software_arch.md
-  - 机械架构: wiki/mechanic_arch.md
-  - 操作流程: wiki/dk_process.md
-  - 驾驶技巧: wiki/drive_tips.md
-  - 关于我们: wiki/aboutus.md
+  - 硬件架构: hardware/hardware_arch.md
+  - 软件架构: software/software_arch.md
+  - 机械架构: mechanic/mechanic_arch.md
+  - 操作流程: operation/dk_process.md
+  - 驾驶技巧: operation/drive_tips.md
+  - 关于我们: aboutus.md
