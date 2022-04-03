@@ -3,17 +3,10 @@ site_name: Donkey Car 中文说明
 theme: readthedocs
 
 nav:
-  - Wiki文档目录: index.md
-  - 赛事简介: wiki/intro.md
-  - 比赛规则: wiki/rules.md
-  - 活动流程: wiki/agenda.md
-  - 驴车软件架构: wiki/software_arch.md
-  - 驴车硬件架构: wiki/hardware_arch.md
-  - 驴车RC架构: wiki/rc_arch.md
+  - 首页: index.md
+  - 硬件架构: wiki/hardware_arch.md
+  - 软件架构: wiki/software_arch.md
+  - 机械架构: wiki/mechanic_arch.md
+  - 操作流程: wiki/dk_process.md
   - 驾驶技巧: wiki/drive_tips.md
-  - 驴车操作流程: wiki/dk_process.md
-  - 工作文档目录: work/workflow.md
-  - 计时软件使用方法: work/timer.md 
-  - 裁判培训: work/judge.md
-  - S2赛季策划: work/race_S2.md 
   - 关于我们: wiki/aboutus.md
