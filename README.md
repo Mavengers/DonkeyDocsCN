@@ -1,6 +1,6 @@
 
 <!-- markdownlint-disable MD026 -->
-# DonkeyCarCN Manual;
+# DonkeyCarCN Manual
 <!-- markdownlint-restore -->
 
 DonkeyCar CN 活动项目驴车的说明文档静态页面目录在 `./site` 中.
