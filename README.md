@@ -1,6 +1,6 @@
 
 <!-- markdownlint-disable MD026 -->
-# DonkeyCarCN Manual;
+# DonkeyCarCN Manual
 <!-- markdownlint-restore -->
 
 DonkeyCar CN 活动项目驴车的说明文档静态页面目录在 `./site` 中.
@@ -28,6 +28,11 @@ DonkeyCar CN 活动项目驴车的说明文档静态页面目录在 `./site` 中
    1. 云端解压+训练@漂移菌
    1. 模型转换成XML@漂移菌
    1. 模型下载+运行测试@漂移菌
+1. ** PC 端模拟器配置及使用
+   1. PC 端驴车环境安装
+   1. 模拟器的安装配置
+   1. 模拟器使用
+
 ## 二、工作文档目录 
 
 1. 计时软件使用方法 @light 
