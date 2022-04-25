@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Alexa Support - Donkey Car 中文说明</title>
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Alexa Support";
+    var mkdocs_page_input_path = "parts/voice_control.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Donkey Car 中文说明</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../hardware/hardware_arch/">硬件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../software/software_arch/">软件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../mechanic/mechanic_arch/">机械架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/dk_process/">操作流程</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../donkeygym/gym_simulator/">模拟训练</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/drive_tips/">驾驶技巧</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about_parts/">关于部件</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../aboutus/">关于我们</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Donkey Car 中文说明</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Alexa Support</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="alexa-support">Alexa Support</h1>
+<h2 id="overview">Overview</h2>
+<p>This part works together with a public Alexa skill that we have released. When
+you say a command, the Alexa skill will forward this command to a server hosted
+by us to temporarily store it. Your donkey car, installed with this part and
+with proper configuration, poll our server for any new command from Alexa.</p>
+<p><img alt="Overview" src="../assets/parts/voice_control/alexa_overview.png" /></p>
+<h2 id="demo">Demo</h2>
+<p>Click the image below to open the video on youtube</p>
+<p><a href="https://www.youtube.com/watch?v=Q3kYmy0yjmc"><img alt="Demo" src="https://img.youtube.com/vi/Q3kYmy0yjmc/0.jpg" /></a></p>
+<h2 id="command-supported">Command Supported</h2>
+<ul>
+<li>Report device code</li>
+<li>autopilot</li>
+<li>slowdown</li>
+<li>speedup</li>
+<li>stop/manual</li>
+</ul>
+<h2 id="get-started">Get Started</h2>
+<ol>
+<li>Use your <code>Alexa app</code>, navigate to Skills and Games</li>
+<li>Search for "Donkey Car Control"</li>
+<li>Enable the Skill</li>
+<li>Say "Open car control and report device code". Use a pencil to write down the
+   device code.</li>
+<li>Follow the instructions below to install the part in donkey car software
+   running on Pi</li>
+</ol>
+<h2 id="installation">Installation</h2>
+<p>To install this part, add the following lines to <code>manage.py</code>, right after the
+<code>controller</code> setup. In manage.py:</p>
+<pre><code class="language-python">
+if cfg.USE_ALEXA_CONTROL:
+  from donkeycar.parts.voice_control.alexa import AlexaController
+  V.add(AlexaController(ctr, cfg), threaded=True)
+</code></pre>
+<p>In myconfig.py, add the following parameters:</p>
+<pre><code class="language-python">USE_ALEXA_CONTROL = True
+ALEXA_DEVICE_CODE = &quot;123456&quot;
+</code></pre>
+<h2 id="commands">Commands</h2>
+<h3 id="autopilot">Autopilot</h3>
+<p><code>Phrases: autopilot, start autopilot</code></p>
+<p>If you use this command, it is expected that the donkey car is started with a
+model. This command will set the variable <code>mode</code> of the controller to <code>local</code>.</p>
+<h3 id="slowdown-speedup">Slowdown / Speedup</h3>
+<p><code>Phrases: slow down, speed up, go faster, go slower</code></p>
+<p>This command alters the <code>cfg.AI_THROTTLE_MULT</code> variable passed from the
+constructor. Each time this command is received, the <code>AI_THROTTLE_MULT</code> is
+increased/decreased by 0.05.</p>
+<p>Note: Since this command alters <code>AI_THROTTLE_MULT</code>, it won't speed up when you
+are running in <code>user</code> or <code>local_angle</code> mode.</p>
+<h3 id="stopmanual">Stop/Manual</h3>
+<p><code>Phrases: human control, user mode, stop autopilot, manual</code></p>
+<p>This command will set the variable <code>mode</code> of the controller to <code>user</code></p>
+<h3 id="report-device-code">Report device code</h3>
+<p><code>Phrases: report device code, what is your device code, device code</code></p>
+<p>Device code is a 6-digit numeric string derived by a hash function from your
+Alexa device ID. In order to distinguish commands from multiple Alexa devices,
+commands sent to our server would require an identifier, which is the device code.
+When donkey car poll for new command, the part will use this device code to poll
+for new commands.</p>
+<h2 id="backend">Backend</h2>
+<p>Check here for our web service source code, it is open source too.</p>
+<p><a href="https://github.com/robocarstore/donkeycar-alexa-backend">https://github.com/robocarstore/donkeycar-alexa-backend</a></p>
+<h2 id="copyright">Copyright</h2>
+<p>Copyright (c) 2020 <a href="https://robocarstore.com">Robocar Ltd</a></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

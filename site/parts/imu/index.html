@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>IMU - Donkey Car 中文说明</title>
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "IMU";
+    var mkdocs_page_input_path = "parts/imu.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Donkey Car 中文说明</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../hardware/hardware_arch/">硬件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../software/software_arch/">软件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../mechanic/mechanic_arch/">机械架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/dk_process/">操作流程</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../donkeygym/gym_simulator/">模拟训练</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/drive_tips/">驾驶技巧</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about_parts/">关于部件</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../aboutus/">关于我们</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Donkey Car 中文说明</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>IMU</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="imu">IMU</h1>
+<p>IMUs or inertial measurement units are parts that sense the inertial forces on a robot. They vary depending on sensor, but may commonly include linear and rotational accelleration. They may sometimes include magnetometer to give global compasss facing dir. Frequently temperature is available from these as it affects their sensitivity.</p>
+<h2 id="mpu6050mpu9250">MPU6050/MPU9250</h2>
+<p>This is a cheap, small, and moderately precise imu. Commonly available at <a href="https://www.amazon.com/s/ref=nb_sb_noss_2?url=search-alias%3Dindustrial&amp;field-keywords=MPU6050">Amazon</a>.</p>
+<p>MPU9250 offers additional integrated magnetometer.</p>
+<ul>
+<li>Typically uses the I2C interface and can be chained off the default PWM PCA9685 board. This configuration will also provide power.</li>
+<li>MPU6050: Outputs acceleration X, Y, Z, Gyroscope X, Y, Z, and temperature.</li>
+<li>MPU6250: Outputs acceleration X, Y, Z, Gyroscope X, Y, Z, Magnetometer X, Y, Z and temperature.</li>
+<li>Chip built-in 16bit AD converter, 16bit data output</li>
+<li>Gyroscopes range: +/- 250 500 1000 2000 degree/sec</li>
+<li>Acceleration range: ±2 ±4 ±8 ±16g</li>
+</ul>
+<h3 id="software-setup">Software Setup</h3>
+<p>Install smbus</p>
+<ul>
+<li>either from package:</li>
+</ul>
+<pre><code class="language-bash"> sudo apt install python3-smbus
+</code></pre>
+<ul>
+<li>or from source:</li>
+</ul>
+<pre><code class="language-bash">sudo apt-get install i2c-tools libi2c-dev python-dev python3-dev
+git clone https://github.com/pimoroni/py-smbus.git
+cd py-smbus/library
+python setup.py build
+sudo python setup.py install
+</code></pre>
+<p>For MPU6050: </p>
+<p>Install pip lib for <code>mpu6050</code>:</p>
+<pre><code class="language-bash">pip install mpu6050-raspberrypi
+</code></pre>
+<p>For MPU9250: </p>
+<p>Install pip lib for <code>mpu9250-jmdev</code>:</p>
+<pre><code class="language-bash">pip install mpu9250-jmdev
+</code></pre>
+<h3 id="configuration">Configuration</h3>
+<p>Enable the following configurations to your <code>myconfig.py</code>:</p>
+<pre><code class="language-python">#IMU
+HAVE_IMU = True
+IMU_SENSOR = 'mpu9250'          # (mpu6050|mpu9250)
+IMU_DLP_CONFIG = 3
+</code></pre>
+<p><code>IMU_SENSOR</code> can be either <code>mpu6050</code> or <code>mpu9250</code> based on the sensor you are using.</p>
+<p><code>IMU_DLP_CONFIG</code> allows to change the digital lowpass filter settings for your IMU. Lower frequency settings (see below) can filter high frequency noise at the expense of increased latency in IMU sensor data.
+Valid settings are from 0 to 6:</p>
+<ul>
+<li><code>0</code> 250Hz</li>
+<li><code>1</code> 184Hz</li>
+<li><code>2</code> 92Hz</li>
+<li><code>3</code> 41Hz</li>
+<li><code>4</code> 20Hz </li>
+<li><code>5</code> 10Hz</li>
+<li><code>6</code> 5Hz</li>
+</ul>
+<h3 id="notes-on-mpu9250">Notes on MPU9250</h3>
+<p>At startup the MPU9250 driver performs calibration to zero accel and gyro bias. Usually the process takes less than 10 seconds, and in that time avoid moving or touching the car.
+Please place the car on the ground before starting Donkey.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

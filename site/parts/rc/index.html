@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>RC control - Donkey Car 中文说明</title>
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "RC control";
+    var mkdocs_page_input_path = "parts/rc.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Donkey Car 中文说明</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../hardware/hardware_arch/">硬件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../software/software_arch/">软件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../mechanic/mechanic_arch/">机械架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/dk_process/">操作流程</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../donkeygym/gym_simulator/">模拟训练</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/drive_tips/">驾驶技巧</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about_parts/">关于部件</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../aboutus/">关于我们</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Donkey Car 中文说明</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>RC control</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="rc-control">RC control</h1>
+<p>(This only works with the RaspberryPi. The Jetson Nano does not provide the necessary GPIO pin support)</p>
+<p>You can drive Donkey with nothing more than the RC controller your car probably came with! The secret is that, thanks to the cool Pigpio library, the RaspberryPi pins can read and generate the RC signals necessary to read your RC receiver and drive your servo and motor controllers. </p>
+<p>To do this you need to either connect some jumper cables from your RC receiver to the RPi GPIO pins and then do the same for your steering servo and motor controller (it's a little fiddly but works fine) or use our forthcoming Donkeycar RC Hat, which is plug and play and includes other nice stuff like a OLED screen, a fan, encoder support and even an e-stop option (like a remote kill switch) if you happen to have a 3Ch (or more) RC transmitter.</p>
+<p>NOTE: RC control is currently only supported in the Dev branch. To use it, after you git clone donkeycar, do a <code>git checkout dev</code></p>
+<h2 id="hardware-setup">Hardware Setup</h2>
+<p>You can use the GPIO pins for RC input, output or both. In the case of RC input, the RC controller replaces a bluetooth joystick. In the case of RC output, it replaces the I2C servo driver board. </p>
+<p>The easiest way to connect RC is via the custom "hat" that we've designed (see above). But if you're doing it yourself, follow this wiring guide. It's a bit of a forest of jumper cables if you're doing both input and output, but remember that you only have to connect one ground and V+ cable to the RC reciever (on any channel), rather than one for every channel. </p>
+<p>Also note the the RC receiver should be connected to the 3.3v pins, while the output servo and motor controller are connected to the 5v pins.</p>
+<p><strong><em>Warning:</em></strong> The RC receiver PWM signal is generated from the receiver input voltage, so connecting the RC receiver to 5V or even 6V from the ESC will fry the RPi!</p>
+<p><img alt="Donkey RC connections" src="../assets/rc.png" /></p>
+<p>Here's what the RC receiver connection should look like</p>
+<p><img alt="Donkey RC connections" src="../assets/rc.jpg" /></p>
+<h2 id="software-setup">Software Setup</h2>
+<p>First, on the command line enter this to set the PIGPIO daemon to always run on startup:</p>
+<pre><code class="language-bash">sudo systemctl enable pigpiod &amp; sudo systemctl start pigpiod
+</code></pre>
+<p>Next, in your <code>mycar</code> directory, edit the myconfig.py files as follows:</p>
+<ul>
+<li>For RC input, select <code>pigpio_rc</code> as your controller type in your myconfig.py file. Uncomment the line (remove the leading <code>#</code>) and edit it as follows:</li>
+</ul>
+<pre><code class="language-python">CONTROLLER_TYPE = 'pigpio_rc'
+</code></pre>
+<p>Also set <code>use joystick</code> to True</p>
+<pre><code class="language-python">USE_JOYSTICK_AS_DEFAULT = True
+</code></pre>
+<ul>
+<li>For RC output, select <code>PWM_STEERING_THROTTLE</code> as your drive train type in your myconfig.py file. Uncomment the line (remove the leading <code>#</code>) and edit it as follows:</li>
+</ul>
+<pre><code class="language-python">DRIVE_TRAIN_TYPE =  &quot;PWM_STEERING_THROTTLE&quot;
+</code></pre>
+<p>For both of these, there are additional settings you can change, such as reversing the direction of output or the pins connected: </p>
+<p>Input options:</p>
+<pre><code class="language-python">#PIGPIO RC control
+STEERING_RC_GPIO = 26
+THROTTLE_RC_GPIO = 20
+DATA_WIPER_RC_GPIO = 19
+PIGPIO_STEERING_MID = 1500         # Adjust this value if your car cannot run in a straight line
+PIGPIO_MAX_FORWARD = 2000          # Max throttle to go fowrward. The bigger the faster
+PIGPIO_STOPPED_PWM = 1500
+PIGPIO_MAX_REVERSE = 1000          # Max throttle to go reverse. The smaller the faster
+PIGPIO_SHOW_STEERING_VALUE = False
+PIGPIO_INVERT = False
+PIGPIO_JITTER = 0.025   # threshold below which no signal is reported
+</code></pre>
+<p>If you are using the RC hat then the PWM output pins shown below (and defaulted in myconfig.py) must be used.
+If you are not using the RC hat then you are free to choose different PWM output pins.
+NOTE: you must install pigpio to use this configuration.  See <a href="../pins/#PIGPIO">PIGPIO</a></p>
+<p>Output options:</p>
+<pre><code class="language-python">PWM_STEERING_PIN = &quot;PIGPIO.BCM.13&quot;           # PWM output pin for steering servo
+PWM_THROTTLE_PIN = &quot;PIGPIO.BCM.18&quot;           # PWM output pin for ESC
+
+STEERING_LEFT_PWM = int(4096 * 1 / 20)       # pwm value for full left steering (1ms pulse)
+STEERING_RIGHT_PWM = int(4096 * 2 / 20)      # pwm value for full right steering (2ms pulse)
+
+THROTTLE_FORWARD_PWM = int(4096 * 2 / 20)    # pwm value for max forward (2ms pulse)
+THROTTLE_STOPPED_PWM = int(4096 * 1.5 / 20)  # pwm value for no movement (1.5ms pulse)
+THROTTLE_REVERSE_PWM = int(4096 * 1 / 20)    # pwm value for max reverse throttle (1ms pulse)
+</code></pre>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p>If one channel is reversed (steering left goes right, etc), either reverse that channel on your RC transmitter (that's usually a switch or setting) or change it in the output options shown above by channging the PWM_INVERTED value for that channel to <code>True</code>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

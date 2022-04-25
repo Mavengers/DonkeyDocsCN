@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>Controller Parts - Donkey Car 中文说明</title>
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Controller Parts";
+    var mkdocs_page_input_path = "parts/controllers.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Donkey Car 中文说明</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../hardware/hardware_arch/">硬件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../software/software_arch/">软件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../mechanic/mechanic_arch/">机械架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/dk_process/">操作流程</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../donkeygym/gym_simulator/">模拟训练</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/drive_tips/">驾驶技巧</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../about_parts/">关于部件</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../aboutus/">关于我们</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Donkey Car 中文说明</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Controller Parts</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="controller-parts">Controller Parts</h1>
+<h2 id="web-controller">Web Controller</h2>
+<p>The default controller to drive the car with your phone or browser. This has a web live preview of camera. Control options include:</p>
+<ol>
+<li>A virtual joystick</li>
+<li>The tilt, when using a mobile device with supported accelerometer</li>
+<li>A physical joystick using the web adapter. Support varies per browser, OS, and joystick combination.</li>
+<li>Keyboard input via the 'ikjl' keys.</li>
+</ol>
+<blockquote>
+<p>Note: Recently iOS has <a href="https://www.macrumors.com/2019/02/04/ios-12-2-safari-motion-orientation-access-toggle/">disabled default Safari</a> access to motion control. </p>
+</blockquote>
+<h2 id="rc-controller">RC Controller</h2>
+<p>If you bought an RC car then it might have come with a standard 2.4GHz car radio and receiver as shown in picture below. This can be used to drive the car. 
+<img alt="wiring diagram" src="../assets/rc.jpg" /></p>
+<p>You can also use the RaspberryPi pins to output directly to the car's servo and motor controller, without the need for an I2C servo driver board. A full tutorial on doing this is <a href="../rc/">here</a>.</p>
+<h2 id="joystick-controller">Joystick Controller</h2>
+<p>Many people find it easier to control the car using a game controller. There are several parts that provide this option.</p>
+<p>The default web controller may be replaced with a one line change to use a physical joystick part for input. This uses the OS device /dev/input/js0 by default. In theory, any joystick device that the OS mounts like this can be used. In practice, the behavior will change depending on the model of joystick ( Sony, or knockoff ), or XBox controller and the Bluetooth driver used to support it. The default code has been written and tested with a <a href="https://www.ebay.com/sch/i.html?_nkw=Sony+Playstation+Dualshock+PS3+controller+OEM">Sony brand PS3 Sixaxis controller</a>. Other controllers may work, but will require alternative Bluetooth installs, and tweaks to the software for correct axis and buttons.</p>
+<h3 id="these-joysticks-are-known-to-work">These joysticks are known to work:</h3>
+<ul>
+<li><a href="https://www.amazon.com/Logitech-940-000117-Gamepad-F710/dp/B0041RR0TW">Logitech Gamepad F710</a></li>
+<li><a href="https://www.ebay.com/sch/i.html?&amp;_nkw=Sony+PS3+Sixaxis+OEM">Sony PS3 Sixaxis OEM</a> (Not compatible with Jetson Nano)</li>
+<li><a href="https://www.ebay.com/sch/i.html?&amp;_nkw=Sony+PS4+Dualshock+OEM">Sony PS4 Dualshock OEM</a></li>
+<li><a href="https://www.amazon.com/Nintendo-Wii-U-Pro-Controller-Black/dp/B00MUY0OFU">WiiU Pro</a></li>
+<li><a href="https://www.amazon.com/Xbox-Wireless-Controller-Blue-one/dp/B01M0F0OIY">XBox Controller</a></li>
+<li><a href="https://www.amazon.com/gp/product/B01AZC3III">SteelSeries Nimbus</a> (works only on TX2 jetpack 4.2+, may work on the Nano)</li>
+</ul>
+<p>These can be enabled by finding the CONTROLLER_TYPE in your myconfig.py and setting it to the correct string identifier ( after disabling the comment ).</p>
+<p>These can be used plugged in with a USB cable. It's been much more convenient to setup Bluetooth for a wireless control.</p>
+<p>There are controller specific setup details below.</p>
+<blockquote>
+<p>Note: If you have a controller that is not listed below, or you are having troubles getting your controller to work or you want to map your controller differently, see <a href="./#creating-a-new-or-custom-game-controller">Creating a New or Custom Game Controller</a>. </p>
+</blockquote>
+<h3 id="change-myconfigpy-or-run-with-js">Change myconfig.py or run with --js</h3>
+<pre><code class="language-bash">python manage.py drive --js
+</code></pre>
+<p>Will enable driving with the joystick. This disables the live preview of the camera and the web page features. If you modify myconfig.py to make <code>USE_JOYSTICK_AS_DEFAULT = True</code>, then you do not need to run with the <code>--js</code>.</p>
+<h2 id="ps3-controller">PS3 Controller</h2>
+<h3 id="bluetooth-setup">Bluetooth Setup</h3>
+<p>Follow <a href="https://pythonhosted.org/triangula/sixaxis.html">this guide</a>. You can ignore steps past the 'Accessing the SixAxis from Python' section. I will include steps here in case the link becomes stale.</p>
+<pre><code class="language-bash">sudo apt-get install bluetooth libbluetooth3 libusb-dev
+sudo systemctl enable bluetooth.service
+sudo usermod -G bluetooth -a pi
+</code></pre>
+<p>Reboot after changing the user group.</p>
+<p>Plug in the PS3 with USB cable. Hit center PS logo button. Get and build the command line pairing tool. Run it:</p>
+<pre><code class="language-bash">wget http://www.pabr.org/sixlinux/sixpair.c
+gcc -o sixpair sixpair.c -lusb
+sudo ./sixpair
+</code></pre>
+<p>Use bluetoothctl to pair</p>
+<pre><code class="language-bash">bluetoothctl
+agent on
+devices
+trust &lt;MAC ADDRESS&gt;
+default-agent
+quit
+</code></pre>
+<p>Unplug USB cable. Hit center PS logo button.</p>
+<p>To test that the Bluetooth PS3 remote is working, verify that <code>/dev/input/js0</code> exists:</p>
+<pre><code class="language-bash">ls /dev/input/js0
+</code></pre>
+<h4 id="troubleshooting">Troubleshooting</h4>
+<p>In case the BT connection on the Raspberry Pi does not work, you see might something like this in <code>bluetoothctl</code>:</p>
+<pre><code class="language-text">[NEW] Controller 00:11:22:33:44:55 super-donkey [default]
+[NEW] Device AA:BB:CC:DD:EE:FF PLAYSTATION(R)3 Controller
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: yes
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: no
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: yes
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: no
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: yes
+...
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: yes
+[CHG] Device AA:BB:CC:DD:EE:FF Connected: no
+[bluetooth]#
+</code></pre>
+<p>Try updating the Linux kernel and firmware by running:</p>
+<pre><code class="language-bash">sudo rpi-update
+</code></pre>
+<p>And then reboot:</p>
+<pre><code class="language-bash">sudo reboot
+</code></pre>
+<h3 id="charging-ps3-sixaxis-joystick">Charging PS3 Sixaxis Joystick</h3>
+<p>For some reason, they don't like to charge in a powered USB port that doesn't have an active Bluetooth control and OS driver. This means a phone type USB charger will not work. Try a powered Linux or mac laptop USB port. You should see the lights blink after plugging in and hitting center PS logo.</p>
+<p>After charging, you will need to plug-in the controller again to the Pi, hit the PS logo, then unplug to pair again.</p>
+<h3 id="new-battery-for-ps3-sixaxis-joystick">New Battery for PS3 Sixaxis Joystick</h3>
+<p>Sometimes these controllers can be quite old. Here's a link to a <a href="http://a.co/5k1lbns">new battery</a>. Be careful when taking off the cover. Remove 5 screws. There's a tab on the top half between the hand grips. You'll want to split/open it from the front and try pulling the bottom forward as you do, or you'll break the tab off as I did.</p>
+<h3 id="ps3-mouse-problems-on-linux">PS3 Mouse problems on Linux</h3>
+<p>Sometimes when you plug-in the PS3 joystick it starts taking over your mouse. If you want to prevent that, you can run this:</p>
+<pre><code class="language-bash">xinput set-prop &quot;Sony PLAYSTATION(R)3 Controller&quot; &quot;Device Enabled&quot; 0
+</code></pre>
+<h2 id="ps4-controller">PS4 Controller</h2>
+<p>The following instructions are based on <a href="https://github.com/RetroPie/RetroPie-Setup/wiki/PS4-Controller#installation">RetroPie</a> and <a href="https://github.com/chrippa/ds4drv">ds4drv</a>.</p>
+<h4 id="install-ds4drv">Install <code>ds4drv</code></h4>
+<p>Running on your pi over ssh, you can directly install it:</p>
+<pre><code class="language-bash">sudo /home/pi/env/bin/pip install ds4drv
+</code></pre>
+<h4 id="grant-permission-to-ds4drv">Grant permission to <code>ds4drv</code></h4>
+<pre><code class="language-bash">sudo wget https://raw.githubusercontent.com/chrippa/ds4drv/master/udev/50-ds4drv.rules -O /etc/udev/rules.d/50-ds4drv.rules
+sudo udevadm control --reload-rules
+sudo udevadm trigger
+</code></pre>
+<h4 id="run-ds4drv">Run <code>ds4drv</code></h4>
+<pre><code class="language-bash">ds4drv --hidraw --led 00ff00
+</code></pre>
+<p>If you see <code>Failed to create input device: "/dev/uinput" cannot be opened for writing</code>, reboot and retry. Probably granting permission step doesn't take effect until rebooting.
+Some controllers don't work with <code>--hidraw</code>. If that's the case try the command without it. <code>--led 00ff00</code> changes the light bar color, it's optional.</p>
+<h4 id="start-controller-in-pairing-mode">Start controller in pairing mode</h4>
+<p>Press and hold <strong>Share</strong> button, then press and hold <strong>PS</strong> button until the light bar starts blinking. If it goes <strong>green</strong> after a few seconds, pairing is successful.</p>
+<h4 id="run-ds4drv-in-background-on-startup-once-booted">Run <code>ds4drv</code> in background on startup once booted</h4>
+<pre><code class="language-bash">sudo nano /etc/rc.local
+</code></pre>
+<p>paste:</p>
+<pre><code class="language-text">/home/pi/env/bin/ds4drv --led 00ff00
+</code></pre>
+<p>Save and exit. Again, with or without <code>--hidraw</code>, depending on the particular controller you are using.</p>
+<p>To disconnect, kill the process <code>ds4drv</code> and hold <strong>PS</strong> for 10 seconds to power off the controller.</p>
+<h2 id="xbox-one-controller">XBox One Controller</h2>
+<h3 id="bluetooth-pairing">bluetooth pairing</h3>
+<p>This code presumes the built-in linux driver for 'Xbox Wireless Controller'; this is pre-installed on Raspbian, so there is no need to install any other drivers.  This will generally show up on /dev/input/js0.  There is another userland driver called xboxdrv; this code has not been tested with that driver.</p>
+<p>The XBox One controller requires that the bluetooth disable_ertm parameter be set to true; to do this:</p>
+<h4 id="jetson-nano"><strong>Jetson Nano</strong></h4>
+<p>Adapted from: https://www.roboticsbuildlog.com/hardware/xbox-one-controller-with-nvidia-jetson-nano</p>
+<ol>
+<li>Install these python libraries before we disable ertm.</li>
+</ol>
+<pre><code>sudo apt-get install nano
+</code></pre>
+<ol>
+<li>Add Non-root access to your input folder:</li>
+</ol>
+<pre><code>sudo usermod -a -G dialout $USER
+sudo reboot
+</code></pre>
+<ol>
+<li>Install sysfsutils</li>
+</ol>
+<pre><code>sudo apt-get install sysfsutils
+</code></pre>
+<ol>
+<li>Edit the config to disable bluetooth ertm</li>
+</ol>
+<pre><code>sudo nano /etc/sysfs.conf
+</code></pre>
+<ul>
+<li>Append this to the end of the config</li>
+</ul>
+<pre><code>/module/bluetooth/parameters/disable_ertm=1
+</code></pre>
+<ol>
+<li>Reboot your computer</li>
+</ol>
+<pre><code>sudo reboot
+</code></pre>
+<ol>
+<li>Re-pair the Xbox One Bluetooth Controller</li>
+<li>
+<p>Unpair (forget) the controller first if you already tried to pair it, then pair it again.  You can do this with the Bluetooth Manager GUI appliation that ships with Jetpack or if you are using command line, then use bluetoothctl:</p>
+</li>
+<li>
+<p>Open terminal and type:
+    <code>bluetoothctl</code></p>
+</li>
+<li>then you should see the list of devices you have paired with and their corresponding MAC address. If you do not, type:
+    <code>paired-devices</code></li>
+<li>To un-pair a device type (replace aa:bb:cc:dd:ee:ff with the MAC address of the device to un-pair):
+    <code>remove aa:bb:cc:dd:ee:ff
+    exit</code></li>
+<li>Pair your device using either Bluetooth Manager GUI or bluetoothctl (see RaspberryPi OS instruction starting with <code>sudo bluetoothctl</code>)</li>
+</ol>
+<p>Once paired you should have a solid light on the xbox button and a stable bluetooth connection.</p>
+<h4 id="raspberrypi-os"><strong>RaspberryPi OS</strong></h4>
+<ul>
+<li>edit the file <code>/etc/modprobe.d/xbox_bt.conf</code>  (that may create the file; it is commonly not there by default)</li>
+<li>add the line: <code>options bluetooth disable_ertm=1</code></li>
+<li>reboot so that this takes affect.</li>
+<li>after reboot you can verify that <code>disable_ertm</code> is set to true entering this
+  command in a terminal:</li>
+</ul>
+<p><code>bash
+  cat /sys/module/bluetooth/parameters/disable_ertm</code></p>
+<ul>
+<li>the result should print 'Y'. If not, make sure the above steps have been done correctly.</li>
+</ul>
+<p>Once that is done, you can pair your controller to your Raspberry Pi using the bluetooth tool. Enter the following command into a bash shell prompt:  </p>
+<pre><code class="language-bash">sudo bluetoothctl
+</code></pre>
+<p>That will start blue tooth pairing in interactive mode. The remaining commands will be entered in that interactive session. Enter the following commands:</p>
+<pre><code class="language-text">agent on
+default-agent
+scan on
+</code></pre>
+<p>That last command will start the Raspberry Pi scanning for new bluetooth devices. At this point, turn on your XBox One controller using the big round 'X' button on top, then start the pairing mode by pressing the 'sync' button on the front of the controller.  Within a few minutes, you should see the controller show up in the output something like this;</p>
+<pre><code class="language-text">[NEW] Device B8:27:EB:A4:59:08 XBox One Wireless Controller
+</code></pre>
+<p>Write down the MAC address, you will need it for the following steps.  Enter this command to pair with your controller:</p>
+<pre><code class="language-text">connect YOUR_MAC_ADDRESS
+</code></pre>
+<p>where <code>YOUR_MAC_ADDRESS</code> is the MAC address you copied previously.  If it does not connect on the first try, try again.  It can take a few tries.  If your controller connects, but then immediately disconnects, your disable_ertm setting might be wrong (see above).  </p>
+<p>Once your controller is connected, the big round 'X' button on the top of your controller should be solid white.  Enter the following commands to finish:</p>
+<pre><code class="language-text">trust YOUR_MAC_ADDRESS
+quit
+</code></pre>
+<p>Now that your controller is trusted, it should automatically connect with your Raspberry Pi when they are both turned on.  If your controller fails to connect, run the bluetoothctl steps again to reconnect.</p>
+<h2 id="creating-a-new-or-custom-game-controller">Creating a New or Custom Game Controller</h2>
+<p>To discover or modify the button and axis mappings for your controller, you can use the <a href="/utility/donkey/#joystick-wizard">Joystick Wizard</a>. The Joystick Wizard will write a custom controller named 'my_joystick.py' to your mycar folder.  To use the custom controller, set <code>CONTROLLER_TYPE="custom"</code> in your myconfig.py.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

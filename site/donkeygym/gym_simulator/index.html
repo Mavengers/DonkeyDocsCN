@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../../img/favicon.ico">
+  <title>模拟训练 - Donkey Car 中文说明</title>
+  <link rel="stylesheet" href="../../css/theme.css" />
+  <link rel="stylesheet" href="../../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "\u6a21\u62df\u8bad\u7ec3";
+    var mkdocs_page_input_path = "donkeygym/gym_simulator.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href="../.." class="icon icon-home"> Donkey Car 中文说明</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../..">首页</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../hardware/hardware_arch/">硬件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../software/software_arch/">软件架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../mechanic/mechanic_arch/">机械架构</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/dk_process/">操作流程</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">模拟训练</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#_2">模拟器安装配置</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#windows">Windows系统</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_3">安装环境依赖</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#linux">Linux 系统</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_4">安装环境依赖</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#macos">MacOS 系统</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#_5">安装环境依赖</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#donkeygym">DonkeyGYM 安装配置</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_6">驾驶</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_7">训练</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#_8">测试训练效果(自动驾驶)</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../operation/drive_tips/">驾驶技巧</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../parts/about_parts/">关于部件</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../../aboutus/">关于我们</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../..">Donkey Car 中文说明</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>模拟训练</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="_1">驴车模拟器</h1>
+<p>Donkey Gym项目是围绕自驾沙盒驴模拟器 ( )的OpenAI.
+从源代码构建模拟器时，需要检查项目的donkey分支的sdsandbox。
+该模拟器建立在Unity游戏平台上，使用其内部物理和图形，并连接到驴车Python进程，以使用我们训练的模型来控制模拟的驴车.
+甚至通过脚本中的 multitrain.py 创建多个 AI 小车进行多车同时跑模拟器环境进行训练.</p>
+<blockquote>
+<p>具体参见/donkeycar/donkeycar/scripts/multitrain.py</p>
+</blockquote>
+<h2 id="_2">模拟器安装配置</h2>
+<h3 id="windows">Windows系统</h3>
+<h4 id="_3">安装环境依赖</h4>
+<blockquote>
+<p>注意: 已在Windows 10上测试过.
+TBD</p>
+</blockquote>
+<h3 id="linux">Linux 系统</h3>
+<h4 id="_4">安装环境依赖</h4>
+<blockquote>
+<p>注意: 已在Ubuntu 20.04 LTS上测试过.</p>
+</blockquote>
+<ul>
+<li>
+<p>打开一个终端(快捷键 Ctrl+ Alt + T)</p>
+</li>
+<li>
+<p>下载并安装miniconda python3.7 64bit版本 <a href="https://conda.io/miniconda.html">miniconda Python 3.7 64 bit</a>. </p>
+</li>
+</ul>
+<pre><code class="language-bash">wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash ./Miniconda3-latest-Linux-x86_64.sh
+</code></pre>
+<ul>
+<li>创建项目目录并进入目录</li>
+</ul>
+<pre><code class="language-bash">mkdir projects
+cd projects
+</code></pre>
+<ul>
+<li>从 Github 上下载最新的donkeycar 仓库.</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/autorope/donkeycar
+cd donkeycar
+git checkout main
+</code></pre>
+<ul>
+<li>获取稳定版本</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/autorope/donkeycar
+cd donkeycar
+git fetch --all --tags
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+git checkout $latestTag
+</code></pre>
+<ul>
+<li>如果不是第一次安装donkeycar,需要更新Conda环境和移除旧的donkey库.</li>
+</ul>
+<pre><code class="language-bash">conda update -n base -c defaults conda
+conda env remove -n donkey
+</code></pre>
+<ul>
+<li>创建 Python anaconda 的环境</li>
+</ul>
+<pre><code class="language-bash">conda env create -f install/envs/ubuntu.yml
+conda activate donkey
+pip install -e .[pc]
+</code></pre>
+<p>我们观察到<code>conda</code> 进行安装的时候非常慢, 两种方法,一种是换<code>mamba</code>,一种就换 Conda源.</p>
+<pre><code class="language-bash">conda install mamba -n base -c conda-forge
+mamba env create -f install/envs/ubuntu.yml
+conda activate donkey
+pip install -e .[pc]
+</code></pre>
+<blockquote>
+<p>注意: 如果你是用 ZSH 的 shell, 需要转义一下[pc],因此你需要输入的不是
+<code>pip install -e . [pc]</code> 而是 <code>pip install -e . \[pc\]</code> </p>
+</blockquote>
+<ul>
+<li>[可选]安装 Tensorflow GPU - 仅当你拥有 NVidia 图形加速卡的时候.</li>
+</ul>
+<p>你需要先安装NVidia GPU的最新驱动,具体参考你显卡的类型去英伟达官方站点寻找.
+Conda  会处理并安装正确的 cuda 和 cuddn 的库来匹配你的 Tensorflow 版本.</p>
+<pre><code class="language-bash">conda install tensorflow-gpu==2.2.0
+</code></pre>
+<ul>
+<li>创建你本地的工作目录:</li>
+</ul>
+<pre><code class="language-bash">cd projects/donkeycar
+donkey createcar --path ../mycar
+</code></pre>
+<blockquote>
+<p>注意:如果关闭了 Anaconda 提示符后,重新打开就需要输入: 
+输入 <code>conda activate donkey</code> 去重新映射到 donkey 的虚拟环境中.</p>
+</blockquote>
+<hr />
+<h3 id="macos">MacOS 系统</h3>
+<blockquote>
+<p>已经在 macOS Big Sur 11.6.5 环境下测试通过.</p>
+</blockquote>
+<h4 id="_5">安装环境依赖</h4>
+<ul>
+<li>
+<p>安装 miniconda Python 3.7 64bit 版本 <a href="https://conda.io/miniconda.html">miniconda Python 3.7 64 bit</a></p>
+</li>
+<li>
+<p>安装 git 64bit工具 <a href="https://www.atlassian.com/git/tutorials/install-git">git 64 bit</a></p>
+</li>
+<li>
+<p>打开一个终端.</p>
+</li>
+<li>
+<p>创建一个项目目录并进入其中.</p>
+</li>
+</ul>
+<pre><code class="language-bash">mkdir projects
+cd projects
+</code></pre>
+<ul>
+<li>从Github 下载最新的驴车仓库.</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/autorope/donkeycar
+cd donkeycar
+git checkout main
+</code></pre>
+<ul>
+<li>获取稳定版本</li>
+</ul>
+<pre><code class="language-bash">git clone https://github.com/autorope/donkeycar
+cd donkeycar
+git fetch --all --tags
+latestTag=$(git describe --tags `git rev-list --tags --max-count=1`)
+git checkout $latestTag
+</code></pre>
+<ul>
+<li>如果不是第一次安装,更新 Conda并且删除旧的donkey虚拟环境 </li>
+</ul>
+<pre><code class="language-bash">conda update -n base -c defaults conda
+conda env remove -n donkey
+</code></pre>
+<ul>
+<li>创建Python anaconda虚拟环境</li>
+</ul>
+<pre><code class="language-bash">conda env create -f install/envs/mac.yml
+conda activate donkey
+pip install -e .[pc]
+</code></pre>
+<p>安装 mamba 并通过 mac.yml 文件安装 pyhton 的依赖库.</p>
+<pre><code class="language-bash">conda install mamba -n base -c conda-forge
+mamba env create -f install/envs/mac.yml
+conda activate donkey
+pip install -e .[pc]
+</code></pre>
+<blockquote>
+<p>注意: 如果你是用 ZSH 的 shell, 需要转义一下[pc],因此你需要输入的不是
+<code>pip install -e . [pc]</code> 而是 <code>pip install -e . \[pc\]</code> </p>
+</blockquote>
+<ul>
+<li>[可选]安装 Tensorflow GPU - 仅当NVidia 图形加速卡的时候.</li>
+</ul>
+<p>你需要先安装NVidia GPU的最新驱动,具体参考你显卡的类型去英伟达官方站点寻找. Conda  会处理并安装正确的 cuda 和 cuddn 的库来匹配你的 Tensorflow 版本.</p>
+<pre><code class="language-bash">conda install tensorflow-gpu==2.2.0
+</code></pre>
+<ul>
+<li>Tensorflow GPU</li>
+</ul>
+<p>不过可惜的是当前似乎没有NVidia gpu 能在 Mac 上支持 tensorflow, 详情请参考: <a href="https://www.tensorflow.org/install#install-tensorflow">tensorflow on mac</a>.</p>
+<ul>
+<li>创建你本地的工作目录:</li>
+</ul>
+<pre><code class="language-bash">donkey createcar --path ../mycar
+</code></pre>
+<h3 id="donkeygym">DonkeyGYM 安装配置</h3>
+<p>您可以通过将模拟器视为虚拟硬件来了解和使用标准的 Donkeycar 驾驶/训练/测试的整个流程
+您将使用与使用真实驴车相同的命令来收集数据、驾驶和训练。</p>
+<p><img alt="模拟器网页界面" src="../images/sim_screen_shot.png" /></p>
+<ul>
+<li>安装</li>
+<li>从<a href="https://github.com/tawnkramer/gym-donkeycar/releases">Donkey Gym Release</a>下载模拟器并解压到驴车项目目录.</li>
+<li>建议将安装路径默认放置在: ~/projects/DonkeySimLinux</li>
+<li>确保完成了donkeycar驴车的环境配置步骤,如果未完成请<a href="./#donkeycar">安装Donkeycar环境</a></li>
+<li>设置 DonkeyGym：</li>
+</ul>
+<pre><code class="language-bash">cd ~/projects
+git clone https://github.com/tawnkramer/gym-donkeycar
+cd gym-donkeycar
+conda activate donkey
+pip install -e .[gym-donkeycar]
+</code></pre>
+<ul>
+<li>你可以使用之前创建的驴车实例环境<code>mycar</code>,但是为了便于区分,我们建议新创建一个模拟器的实例.</li>
+</ul>
+<pre><code class="language-bash">donkey createcar --path ../mysim
+cd ../mysim
+</code></pre>
+<ul>
+<li>编辑你的<code>myconfig.py</code> 去启用 Donkey GYM 环境.替换 <code>&lt;user-name&gt;</code> 和其他部分的路径, 例如你的 donkey_sim 的模拟器的位置:
+** 本地模拟器
+本地模拟器表示您将使用您本地的模拟器环境进行驴车的数据采集, 训练,自动驾驶等操作.</li>
+</ul>
+<pre><code class="language-bash">DONKEY_GYM = True
+DONKEY_SIM_PATH = &quot;/home/&lt;user-name&gt;/projects/DonkeySimLinux/donkey_sim.x86_64&quot;
+DONKEY_GYM_ENV_NAME = &quot;donkey-generated-track-v0&quot;
+</code></pre>
+<p>** 远程模拟器
+远程模拟器就是允许您通过互联网连入驴车服务器并和互联网上的用户进行驴车模拟驾驶,同时采集数据到本地,采集完成后,可以在本地完成数据筛选和模型训练.
+然后再利用训练好的模型进行比赛.</p>
+<pre><code class="language-bash">WEB_CONTROL_PORT = 8880
+WEB_INIT_MODE = &quot;local&quot;
+DONKEY_GYM = True
+DONKEY_GYM_ENV_NAME = &quot;donkey-generated-track-v0&quot;
+DONKEY_SIM_PATH = &quot;remote&quot;
+SIM_HOST = &quot;race.donkeydrift.com&quot;
+SIM_PORT = 9091
+GYM_CONF = { &quot;body_style&quot; : &quot;car01&quot;, &quot;body_rgb&quot; : (255, 0, 255), &quot;car_name&quot; : &quot;&lt;YOUR_NAME&gt;&quot;, &quot;font_size&quot; : 100}
+GYM_CONF[&quot;racer_name&quot;] = &quot;&lt;YOUR_NAME&gt;&quot;
+GYM_CONF[&quot;country&quot;] = &quot;Shanghai&quot;
+GYM_CONF[&quot;bio&quot;] = &quot;&lt;YOUR_BIO&gt;&quot;
+GYM_CONF[&quot;guid&quot;] = &quot;0&quot;
+</code></pre>
+<blockquote>
+<p>注意: 这里的主要需要设置 DONKEY_SIM_PATH = "remote" 
+另外对于本地用户的 DONKEY_SIM_PATH设置一定是 DonkeySimLinux 模拟器安装的路径.</p>
+<p>Windows: DonkeySimWin/donkey_sim.exe
+ Mac OS: DonkeySimMac/donkey_sim.app/Contents/MacOS/donkey_sim
+ Linux: DonkeySimLinux/donkey_sim.x86_64
+ Mac OS 和 Linux 系统中,需要对模拟器的二进制文件赋权.</p>
+</blockquote>
+<pre><code class="language-bash">chmod +x DonkeySimMac/donkey_sim.app/Contents/MacOS/donkey_sim
+</code></pre>
+<p>或</p>
+<pre><code class="language-bash">chmod +x DonkeySimLinux/donkey_sim.x86_64
+</code></pre>
+<h3 id="_6">驾驶</h3>
+<p>在确保当前环境在 donkey 的虚拟环境下的情况下,就是终端命令提示符前方类似: <code>(donkey)[username@localhost ~]$</code>
+如果是<code>(base)</code>, 请在终端输入:</p>
+<pre><code class="language-bash">conda activate donkey
+</code></pre>
+<p>启动驾驶:</p>
+<pre><code class="language-bash">python manage.py drive
+</code></pre>
+<p>这时候,当你的模拟器是本地模拟器的时候,会自动启动 unity的程序,并可以通过网页端访问 <a href="http://localhost:8887/drive">http://localhost:8887/drive</a>看到控制页面.</p>
+<blockquote>
+<p>如果您目前有一个 PS3/XBOX 手柄, 那么可以接入你的电脑,在网页端选择 <code>joystick</code> 方式进行控制.只有在 Ubuntu Linux下,
+你可以插入你的手柄,在系统中会识别成一个字符设备, 位置在<code>/dev/input/js0</code>
+你可以编辑 <code>myconfig.py</code> 文件去添加你的摇杆的模型和使用<code>--js</code>
+参数来运行驾驶时使用的程序.</p>
+</blockquote>
+<pre><code class="language-bash">python manage.py drive --js
+</code></pre>
+<p>在模拟器中的车辆行驶起来后, 它将会在本地的 data 目录中创建 tub 记录,这里的记录里面包含图片,当前的油门和转向信息.</p>
+<h3 id="_7">训练</h3>
+<ul>
+<li>本地训练</li>
+</ul>
+<p>如果您本地主机性能卓越,并且当前您没有远程云端服务器提供训练服务,您可以直接在本地对数据集进行训练并生成你想要的模型.</p>
+<pre><code class="language-bash">donkey train --tub ./data --model models/mypilot.h5
+</code></pre>
+<ul>
+<li>Azure云端训练</li>
+</ul>
+<p>如果使用 Azure 云端主机进行训练,则需要将数据打包并通过 scp
+等远程传输的方式传输到云端的驴车环境中进行训练, 训练的命令与本地训练一致.
+打包数据并上传云端命令类似:</p>
+<pre><code class="language-bash">tar -cvzf data.tar.gz  ./data 
+scp -i donkeycar.pem -P50001 data.tar.gz azureuser@云端主机 IP 地址( 比赛前会分发给各位选手):/home/azureuser/ 
+</code></pre>
+<h3 id="_8">测试训练效果(自动驾驶)</h3>
+<p>和驾驶时使用的命令类似, 只是在自动驾驶时,添加<code>--model</code> 参数及模型文件的相对路径.</p>
+<pre><code class="language-bash">python manage.py drive --model models/mypilot.h5
+</code></pre>
+<p>然后通过网页控制端,设置<code>Mode and Pilot</code> 为 <code>Full Pilot</code>, 这时候模拟的驴车就开始自动驾驶了.</p>
+<hr />
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../../operation/drive_tips/" class="btn btn-neutral float-right" title="驾驶技巧">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../../operation/dk_process/" class="btn btn-neutral" title="操作流程"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../../operation/dk_process/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../../operation/drive_tips/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '../..';</script>
+    <script src="../../js/theme.js" defer></script>
+      <script src="../../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
