@@ -9,7 +9,9 @@ Donkey Gym项目是围绕自驾沙盒驴模拟器 ( )的OpenAI.
 ### Windows系统
 #### 安装环境依赖
 > 注意: 已在Windows 10上测试过.
-TBD
+
+* 配置 Windows 环境,参考:  [安装 WSL](https://docs.microsoft.com/zh-cn/windows/wsl/install)
+* 安装 VSCODE,参考:  [安装VSCODE](https://code.visualstudio.com/)
 
 ### Linux 系统
 #### 安装环境依赖

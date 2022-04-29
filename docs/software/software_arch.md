@@ -27,4 +27,17 @@ OpenCV视觉框架
 * 关于 part
 [part 剖析](../../parts/about_parts/#)
 
+软件框架整体结构图:
+* 主程序循环架构示意图:
+![数据采集循环示意图](./images/donkey_arch_main.001.jpeg)
+
+* 数据结构示意图:
+![数据接口](./images/donkey_arch_main.002.jpeg)
+
+* 自动驾驶支持的模型格式:
+![模型格式](./images/donkey_arch_main.003.jpeg)
+
+* 自动驾驶支持的网络架构:
+![模型格式](./images/donkey_arch_main.004.jpeg)
+
 ---
