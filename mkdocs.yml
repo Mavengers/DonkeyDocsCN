@@ -5,12 +5,10 @@ theme: readthedocs
 nav:
   - 首页: index.md
   - 赛事背景: race_background/race_bg_info.md 
-  - 规则介绍: rules/rulesinfo.md 
   - 硬件架构: hardware/hardware_arch.md
   - 机械架构: mechanic/mechanic_arch.md
   - 软件架构: software/software_arch.md
-  - 操作流程: operation/dk_process.md
-  - 模拟训练: donkeygym/gym_simulator.md
-  - 驾驶技巧: operation/drive_tips.md
-  - 关于部件: parts/about_parts.md
+  - 线下比赛: operation/dk_process.md
+  - 线上比赛: donkeygym/gym_simulator.md
+  - 进阶技巧: operation/drive_tips.md
   - 关于我们: aboutus.md

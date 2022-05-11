@@ -1,7 +1,8 @@
 # 软件架构
-* 核心架构体系
-驴车的整体架构是通过在 Linux 系统(目前是 Ubuntu 20.04 LTS版本)上构建,通过
-Python 环境及 OpenCV, Tensorflow, Keras, OpenVINO, Arduino整合而成.
+##  核心架构体系
+驴车的整体架构是通过在 Linux 系统(目前是 Ubuntu 20.04 LTS版本)上构建，通过本地 Python 环境及LattePanda, OpenCV, Tensorflow, Keras, OpenVINO, Arduino，以及云端Azure Machine Learning, Azure DevOps等云服务整合而成。
+
+![Software_arch](./images/software_arch.png)
 
 学习资源
 
@@ -22,22 +23,20 @@ OpenCV视觉框架
 * 版本: 4.5.5.60 (根据实际平台选择安装版本)
 * 下载链接: [OpenCV](https://www.opencv.org/)
 
-驴车代码解析
+## 驴车代码解析
 
-* 关于 part
-[part 剖析](../../parts/about_parts/#)
+软件框架
 
-软件框架整体结构图:
-* 主程序循环架构示意图:
+<b>主程序循环架构</b><br>
 ![数据采集循环示意图](./images/donkey_arch_main.001.jpeg)
 
-* 数据结构示意图:
+<b>数据结构</b><br>
 ![数据接口](./images/donkey_arch_main.002.jpeg)
 
-* 自动驾驶支持的模型格式:
+<b>模型格式</b><br>
 ![模型格式](./images/donkey_arch_main.003.jpeg)
 
-* 自动驾驶支持的网络架构:
+<b>网络架构</b><br>
 ![模型格式](./images/donkey_arch_main.004.jpeg)
 
 ---

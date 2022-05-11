@@ -1,5 +1,31 @@
-# 安装远程登录软件
-	一般情况下,驴车安装配置完成后,可通过Wi-Fi连入网络,建议通过远程终端软件登录驴车进行调试.
+# 线下比赛
+
+## 比赛规则
+
+![Silde1](./images/Slide1.png)
+
+![Silde2](./images/Slide2.png)
+
+![Silde4](./images/Slide4.png)
+
+![Silde5](./images/Slide5.png)
+
+---
+
+## 比赛安排
+
+TBD
+
+---
+
+## 奖项评选
+
+TBD
+
+---
+
+## 操作流程 
+一般情况下,驴车安装配置完成后,可通过Wi-Fi连入网络,建议通过远程终端软件登录驴车进行调试.
 
 常见远程登录软件
 
@@ -23,7 +49,7 @@ hostname -I
 ifconfig wlan0
 ```
 
-<b>驴车项目路径</b>
+驴车项目路径
 
 驴车项目位于`/home/donkeycar/projects`目录, 请在远程登录系统后,通过`cd` 命令切换至该目录,并确认当前为`(donkey)`虚拟环境.
 如果当前位于:`(base)[donkeycar@donkeycar0X ~]$`
@@ -39,16 +65,20 @@ conda activate donkey
 conda deactivate donkey 
 ```
 
-## 启动驴车
+### 启动驴车
 
+#### 操作步骤
 在终端输入:
+
 ```
 python manage.py  drive
 ```
 
 驴车启动后,终端会被占用,如果需要终止驴车运行请在键盘按下: `ctrl + c`
 
-## 网页端控制 
+### 网页端控制
+
+
 
 默认情况下,驴车在启动后会通过tornado 库实现一个简单的web页面,该页面可用于监控驴车行驶状态及网页端控制,可通过浏览器访问驴车IP
 地址及端口来获取.
@@ -63,7 +93,9 @@ http://驴车当前IP地址:8887 端口
 > 驴车在驾驶过程中,会不断通过摄像头采集图片信息并整合当前的角度和油门值存储在`data`目录.
 > 在执行终端中可以通过键盘输入: CTRL + C 结束采集. 
 
-## 压缩打包数据 
+### 压缩打包数据 
+
+
 
 为上传到Azure 进行云端进行训练,加快训练进程.
 
@@ -75,17 +107,21 @@ ls
 
 > 如果有 data.tar.gz 的红色压缩包就好. 
 
-## 上传云主机 
+### 上传云主机 
+
+
 
 * 通过`scp`命令拷贝
 
 ```
 scp -P50001 data.tar.gz -i DONKEYCAR_KEY.pem azureuser@AZURE_SERVER_IP:/home/azureuser/mycar/
 ```
+### 训练方法
 
-## 训练方法
+
 
 * 解压  
+
 ```
 tar -xf data.tar.gz  
 ```
@@ -97,41 +133,96 @@ tar -xf data.tar.gz
 在终端中
 
 ```bash
-donkey train --tub data/  --model models/donkeycar01.h5 
+donkey train --tub data/  --model models/[YOUR_MODEL_NAME].h5 
 ```
-> donkeycar01.h5 就是模型的名字, donkeycar01 为当前驴车的主机名. 
 
-## 转换模型 
+> [YOUR_MODEL_NAME].h5 就是模型的名字.
+
+### 转换模型 
+
 
 训练完成后会在驴车实例的 models 目录中生成模型文件. 由于默认训练出来的模型类型是:`keras`
 需要转换为`tensorflow`类型,再转换成`OpenVINO`能识别的类型.
 
-> 该操作TBD
-
 ```bash
-cd /home/azureuser/projects/traincar/models/ 
-scp -P 50001 azureuser@AZURE_SERVER_IP://home/azureuser/projects/traincar/models/donkeycar01.h5
+cd /home/azureuser/projects/traincar/models/
+mkdir [TENSORFLOW_MODEL_PATH]
+mkdir [OPENVINO_IR_MODEL_PATH]
+cd ..
+python convert_keras2tf.py --from models/[YOUR_MODEL_NAME].h5 --to models/[TENSORFLOW_MODEL_PATH]/
 ```
 
-> 这里的`-P` 后面填写的服务器端口请参考对应的服务器端口填写.
+convert_keras2tf.py 示例代码:
 
-* 自动驾驶 
+```python
+import tensorflow as tf
+import os
+import sys
 
-首先要确保你的模型文件放置在驴车的/home/pi/projects/mycar/models/下. 
-然后在终端执行: 
+'''
+--from: keras mode path .h5 e.g. /PATH/TO/[YOUR_CAR_INSTANCE]/models/[YOUR_MODEL_NAME].h5
+--to: converted openvino path to e.g. /PATH/TO/[YOUR_CAR_INSTANCE]/models/[OPENVINO_IR_MODEL_PATH]/
+'''
+os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
+
+if __name__ == '__main__':
+    args = sys.argv[1:]
+    if len(args) == 4:
+        if args[0] == '--from':
+            model = tf.keras.models.load_model(args[1])
+        if args[2] == '--to':
+            tf.saved_model.save(model,args[3])
+```
+
+将转换好的 TF 模型文件转换成 OV 的 IR 模型文件.
+
+> PS: 这里需要手动添加一个 库: defusedxml
 
 ```bash
-cd /home/pi/projects/mycar/ 
-python manage.py drive --model models/donkeycar01.h5 
+conda install defusedxml
+python /opt/intel/openvino_2021/deployment_tools/model_optimizer/mo.py --saved_model_dir models/[TENSORFLOW_MODEL_PATH] --input_shape [1,120,160,3] -o models/[OPENVINO_IR_MODEL_PATH] --data_type FP16
 ```
+查看一下数据结构:
+
+```bash
+sudo apt -y install tree
+tree .
+
+```
+
+![IR_MO](./images/ir_mo.png)
+
+* 打包压缩OpenVINO模型文件
+
+```bash
+cd models/
+tar -czvf [OPENVINO_IR_MODEL_PATH].tar.gz [OPENVINO_IR_MODEL_PATH]
+```
+
+> 注意: 目前需要保证当前环境已经回到 DonkeyCar 环境中.可以通过检查主机名和登陆用户判断
+
+* 下载并解压 OpenVINO 的 IR模型
+
+```bash
+cd /home/donkeycar/projects/[YOUR_CAR_INSTANCE]/models
+scp -P 50001 azureuser@SERVER_IP_ADDRESS:/home/azureuser/projects/traincar/models/[OPENVINO_IR_MODEL_PATH].tar.gz .
+tar -xf [OPENVINO_IR_MODEL_PATH].tar.gz ir/driver_FP16/
+```
+模型存放位置如下图
+
+![模型位置](./images/ir_position.png)
+
+### 自动驾驶
+
 * 网页控制
 
 通过浏览器访问`http://驴车当前IP地址:8887/`, 替换驴车地址信息为驴车设别地址信息.
 
-先点击页面下方的: `start vehicle`按钮然后在 `mode & pilot` 选择`local pilot`小车就开始自行驾驶了. 
+先点击页面下方的: `start vehicle`按钮然后在 `Mode & Pilot` 选择`Full Pilot`小车就开始自行驾驶了. 
 
 需要终止请在终端上按下 `Ctrl + C`
 
+> 此时, 需要开启遥控器的 `Channel3` 按钮(手柄左手大拇指位置) 来解锁油门.
 > 以上所有操作需要在拥有硬件驴车和 azure 云服务器的情况下进行.
 
 ---

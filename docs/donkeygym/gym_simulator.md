@@ -1,13 +1,24 @@
-# 驴车模拟器
+# 线上比赛
+
+## 比赛规则
+
+![online_rules_1](./images/online_rules_1.png)
+
+![online_rules_2](./images/online_rules_2.png)
+
+## 操作流程 
+
+<b>驴车模拟器</b><br>
 Donkey Gym项目是围绕自驾沙盒驴模拟器 ( )的OpenAI.
 从源代码构建模拟器时，需要检查项目的donkey分支的sdsandbox。
 该模拟器建立在Unity游戏平台上，使用其内部物理和图形，并连接到驴车Python进程，以使用我们训练的模型来控制模拟的驴车.
-甚至通过脚本中的 multitrain.py 创建多个 AI 小车进行多车同时跑模拟器环境进行训练.
-> 具体参见/donkeycar/donkeycar/scripts/multitrain.py
+甚至通过脚本中的 multi_train.py 创建多个 AI 小车进行多车同时跑模拟器环境进行训练.
+> 具体参见/donkeycar/donkeycar/scripts/multi_train.py
 
-## 模拟器安装配置
 ### Windows系统
+
 #### 安装环境依赖
+
 > 注意: 已在Windows 10上测试过.
 
 * 配置 Windows 环境,参考:  [安装 WSL](https://docs.microsoft.com/zh-cn/windows/wsl/install)
@@ -290,16 +301,6 @@ python manage.py drive --js
 
 ```bash
 donkey train --tub ./data --model models/mypilot.h5
-```
-* Azure云端训练
-
-如果使用 Azure 云端主机进行训练,则需要将数据打包并通过 scp
-等远程传输的方式传输到云端的驴车环境中进行训练, 训练的命令与本地训练一致.
-打包数据并上传云端命令类似:
-
-```bash
-tar -cvzf data.tar.gz  ./data 
-scp -i donkeycar.pem -P50001 data.tar.gz azureuser@云端主机 IP 地址( 比赛前会分发给各位选手):/home/azureuser/ 
 ```
 
 ### 测试训练效果(自动驾驶)
