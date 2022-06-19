@@ -95,8 +95,6 @@ http://驴车当前IP地址:8887 端口
 
 ### 压缩打包数据 
 
-
-
 为上传到Azure 进行云端进行训练,加快训练进程.
 
 ```
@@ -109,8 +107,6 @@ ls
 
 ### 上传云主机 
 
-
-
 * 通过`scp`命令拷贝
 
 ```
@@ -118,41 +114,40 @@ scp -P50001 data.tar.gz -i DONKEYCAR_KEY.pem azureuser@AZURE_SERVER_IP:/home/azu
 ```
 ### 训练方法
 
-
-
-* 解压  
+* 通过ssh 命令登陆到Azure云服务器,其中需要使用对应的KEY,和对应的端口登陆,其中部分云主机开放的端口是`50000`, 部分是`50001`, 请根据实际对应的服务器数据添加. 
 
 ```
+ssh -p 50001 -i /home/donkeycar/hackauto06-gpu.pem azureuser@[Azure GPU Server]
+```
+
+* 进入项目目录并解压采集的数据并在 Azure GPU服务器上训练Keras 模型.  
+
+```
+cd mycar
 tar -xf data.tar.gz  
+donkey train --tub data/[TUB_SUB_DATA]/  --model models/[MODEL_NAME].h5
 ```
 
 > 请确认数据包加压到`/home/azureuser/mycar/data` 目录.
 
-* 训练 
+### 创建Tensorflow 模型路径和 openVINO 模型路径
 
-在终端中
-
-```bash
-donkey train --tub data/  --model models/[YOUR_MODEL_NAME].h5 
 ```
-
-> [YOUR_MODEL_NAME].h5 就是模型的名字.
-
-### 转换模型 
-
+cd modules
+mkdir tf
+mkdir ov 
+```
 
 训练完成后会在驴车实例的 models 目录中生成模型文件. 由于默认训练出来的模型类型是:`keras`
 需要转换为`tensorflow`类型,再转换成`OpenVINO`能识别的类型.
+* 转换模型: 将模型从 Keras 转换为 Tensorflow.
 
 ```bash
-cd /home/azureuser/projects/traincar/models/
-mkdir [TENSORFLOW_MODEL_PATH]
-mkdir [OPENVINO_IR_MODEL_PATH]
 cd ..
-python convert_keras2tf.py --from models/[YOUR_MODEL_NAME].h5 --to models/[TENSORFLOW_MODEL_PATH]/
+python convert_keras2tf.py --from models/[MODEL_NAME].h5 --to models/tf/
 ```
 
-convert_keras2tf.py 示例代码:
+其中转换脚本convert_keras2tf.py 示例代码:
 
 ```python
 import tensorflow as tf
@@ -174,13 +169,13 @@ if __name__ == '__main__':
             tf.saved_model.save(model,args[3])
 ```
 
-将转换好的 TF 模型文件转换成 OV 的 IR 模型文件.
+* 将Tensorflow模型转换成OpenVINO模型. 
 
 > PS: 这里需要手动添加一个 库: defusedxml
 
 ```bash
 conda install defusedxml
-python /opt/intel/openvino_2021/deployment_tools/model_optimizer/mo.py --saved_model_dir models/[TENSORFLOW_MODEL_PATH] --input_shape [1,120,160,3] -o models/[OPENVINO_IR_MODEL_PATH] --data_type FP16
+python /opt/intel/openvino_2021/deployment_tools/model_optimizer/mo.py --saved_model_dir models/tf --input_shape [1,120,160,3] -o models/ov --data_type FP16
 ```
 查看一下数据结构:
 
@@ -195,18 +190,24 @@ tree .
 * 打包压缩OpenVINO模型文件
 
 ```bash
-cd models/
-tar -czvf [OPENVINO_IR_MODEL_PATH].tar.gz [OPENVINO_IR_MODEL_PATH]
+cd models
+tar -czvf ov.tar.gz ov/
+```
+
+* 退出Azure GPU 服务器,回到驴车本地环境中.
+```
+exit
 ```
 
 > 注意: 目前需要保证当前环境已经回到 DonkeyCar 环境中.可以通过检查主机名和登陆用户判断
 
-* 下载并解压 OpenVINO 的 IR模型
+* 从 Azure 云服务器下载 OpenVINO 模型文件并解压.
 
 ```bash
-cd /home/donkeycar/projects/[YOUR_CAR_INSTANCE]/models
-scp -P 50001 azureuser@SERVER_IP_ADDRESS:/home/azureuser/projects/traincar/models/[OPENVINO_IR_MODEL_PATH].tar.gz .
-tar -xf [OPENVINO_IR_MODEL_PATH].tar.gz ir/driver_FP16/
+cd projects/vinocar/
+scp -P50001 -i /home/donkeycar/hackauto06-gpu.pem azureuser@[Azure GPU Server]:/home/azureuser/mycar/models/ov.tar.gz models/
+cd models
+tar -xf ov.tar.gz
 ```
 模型存放位置如下图
 
