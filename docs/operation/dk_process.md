@@ -14,11 +14,12 @@
 
 ## 评分规则
 ![rules01](./images/rules01.png)
+![rules02](./images/rules02.png)
 
 ---
 
 ## 比赛安排
-![rules02](./images/rules02.png)
+![rules04](./images/rules04.png)
 
 ---
 
