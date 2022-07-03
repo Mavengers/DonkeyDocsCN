@@ -18,12 +18,12 @@
 ---
 
 ## 比赛安排
-![rules02](./images/rules01.png)
+![rules02](./images/rules02.png)
 
 ---
 
 ## 奖项评选
-![rules03](./images/rules01.png)
+![rules03](./images/rules03.png)
 
 ---
 
