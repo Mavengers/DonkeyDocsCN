@@ -12,15 +12,18 @@
 
 ---
 
-## 比赛安排
+## 评分规则
+![rules01](./images/rules01.png)
 
-TBD
+---
+
+## 比赛安排
+![rules02](./images/rules01.png)
 
 ---
 
 ## 奖项评选
-
-TBD
+![rules03](./images/rules01.png)
 
 ---
 
