@@ -4,7 +4,7 @@
 
 ![Silde1](./images/Slide1.png)
 
-![Silde2](./images/Slide2.png)
+![Silde2](./images/Slide2.jpeg)
 
 ![Silde4](./images/Slide4.png)
 
@@ -19,7 +19,7 @@
 ---
 
 ## 比赛安排
-![rules04](./images/rules04.png)
+![rules04](./images/bisaianpai.jpeg)
 
 ---
 
@@ -30,7 +30,7 @@
 
 ## 操作流程 
 * 驴车开机
-驴车在开机前,大家请检查驴车硬件线缆是否松动,例如检查 USB 摄像头状态,Intel神经棒连接是否稳定,并且去掉镜头盖,打开侧面电源开关,并且等待 LattePanda 自检完成,自检过程中,红色的 LED 灯会以 50Hz 的频率闪烁,等待红色LED 关闭后,请按下 LattePand 底板侧面靠近网卡接口处的白色按钮,第一个按钮为重置按钮, 第二个按钮是开关机按钮,按下后红色LED 灯长亮即进入启动状态.
+驴车在开机前,大家请检查驴车硬件线缆是否松动,例如检查 USB 摄像头状态,Intel神经棒连接是否稳定,并且去掉镜头盖,打开侧面电源开关,并且等待 LattePanda 自检完成,自检过程中,leonardo板上的蓝色 LED 灯会以 50Hz 的频率闪烁, 等待自检完成后, 蓝色 LED 停止闪烁,红色 LED 熄灭, 默认如果接入了屏幕,将会看到设备启动.LattePanda板第一个按钮为重置按钮(靠近网卡接口), 第二个按钮是开关机按钮,默认启动后,红色LED 灯长亮即进入启动状态.
 ```
 PS: 建议此时将 HDMI 线缆接入 LattePanda. 
 ```
