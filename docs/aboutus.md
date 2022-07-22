@@ -7,6 +7,5 @@
 * 江炜婕 Rebecca
 * 陈其 Nick
 * 张嗣德 Cain
-* 刘主君 阿土(Bug) 
 
 ---
