@@ -1,5 +1,5 @@
 ---
-site_name: Donkey Car 中文说明
+site_name: 漂移驴车S3赛季中文操作说明
 theme: readthedocs
 
 nav:
@@ -9,6 +9,5 @@ nav:
   - 机械架构: mechanic/mechanic_arch.md
   - 软件架构: software/software_arch.md
   - 线下比赛: operation/dk_process.md
-  - 线上比赛: donkeygym/gym_simulator.md
   - 进阶技巧: operation/drive_tips.md
   - 关于我们: aboutus.md
