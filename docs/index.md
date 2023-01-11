@@ -1,7 +1,7 @@
 # 漂移驴车<br>
 ![logo](./images/logo_dk.png)<br>
 <br>
-<H1> 欢迎加入漂移驴车社区! </H1><br>
+<H1> 欢迎加入漂移驴车社区!</H1><br>
 <br>
 ## 站点地图<br>
 |-- [首页](./aboutus.md)<br>
