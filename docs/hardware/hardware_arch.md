@@ -2,7 +2,7 @@
 
 ##  硬件组成
 
-![驴车外观](./images/donkeycar_outlook.png)
+![驴车外观](./images/arduino.png)
 
 ![硬件列表](./images/hardware_arch.png)
 
