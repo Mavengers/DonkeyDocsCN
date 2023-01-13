@@ -28,11 +28,28 @@
 
 ---
 
-## 操作流程 
+# 操作流程 
 * 驴车开机
-驴车在开机前,大家请检查驴车硬件线缆是否松动,例如检查 USB 摄像头状态,Intel神经棒连接是否稳定,并且去掉镜头盖,打开侧面电源开关,并且等待 LattePanda 自检完成,自检过程中,leonardo板上的蓝色 LED 灯会以 50Hz 的频率闪烁, 等待自检完成后, 蓝色 LED 停止闪烁,红色 LED 熄灭, 默认如果接入了屏幕,将会看到设备启动.LattePanda板第一个按钮为重置按钮(靠近网卡接口), 第二个按钮是开关机按钮,默认启动后,红色LED 灯长亮即进入启动状态.
+ 
+> 注意! 注意! 注意!  重要的问题强调三遍!!!
+> 操作不规范, 驴友两行泪!
+> 下面几条内容请大家一定要注意并互相转告!
+> 1. 车辆在调试过程中一定要保证车辆稳定的停放在车架上,四轮必须离开桌面.
+> 2. 在调试过程中,请确保`CH3` 保持在锁定状态(灯灭掉的状态)
+> 3. 禁止任何液体进入到车体内部,会造成短路.
+> 4. 请保护好各种电缆,并且保护好镜头.
+> 5. 严禁任何带电操作接口设备, USB 和 HDMI 除外.
+
+驴车在开机前,大家请检查驴车硬件线缆是否松动.
+1. 例如检查 USB 摄像头状态
+2. 是否已经去掉镜头盖
+3. 接入电池后 LattePanda Delta 3(下文中将使用 LPD3 代替) 会自动开机并接入钛星人路由器提供的网络环境.
+![ConnectBattery](./images/dks3/ConnectBattery.png)
+4. 按下自锁开关旁边的轻触按键给下位机供电,并且给电调上电.
+![TurnOnVechicle](./images/dks3/TurnOnVechicle.png)
+
 ```
-PS: 建议此时将 HDMI 线缆接入 LattePanda. 
+PS: 建议此时将 HDMI 线缆接入LPD3 HDMI 接口, 并接入键盘鼠标等外设,也可以通过SSH 远程登录驴车环境进行命令行操作.
 ```
 * 驴车启动完成
 一般情况下,驴车安装配置完成后,可通过Wi-Fi连入网络,建议通过远程终端软件登录驴车进行调试.
@@ -46,7 +63,7 @@ PS: 建议此时将 HDMI 线缆接入 LattePanda.
 
 登录信息
 
-* 用户名: `donkeycar`
+* 用户名: `dks3`
 * 密码: `donkeycar`
 * IP地址: 请在比赛现场联网后通过下面命令获取.
 
@@ -58,35 +75,31 @@ hostname -I
 ```
 ifconfig wlan0
 ```
+默认情况下请不要随便更改 IP 地址,因为我们做了 MAC 地址绑定,需要查询 IP 地址也可以询问工作人员:昊男或漂移菌.
 
 驴车项目路径
 
-驴车项目位于`/home/donkeycar/projects/vinocar`目录, 请在远程登录系统后,通过`cd` 命令切换至该目录,并确认当前为`(donkey)`虚拟环境.
-如果当前位于:`(base)[donkeycar@donkeycar0X ~]$`
+驴车项目位于`/home/dks3/projects/mycar`目录, 请在远程登录系统后,会自动进入驴车项目目录,不再需要使用`conda active donkey`激活环境了.
 
-> 此时是conda 基础环境需要切换至驴车环境.
+> `/home/dks3/projects/mycar` 目录结构如下图:
+![filestructure](./images/dks3/FileStructure.jpg)
 
-```
-conda activate donkey 
-```
-
-如果需要退出虚拟环境:
-```
-conda deactivate donkey 
-```
-
-### 启动驴车
+### 数据采集
 
 #### 操作步骤
+在默认情况下,我们提供了一个测试用的模型文件放在models 目录中,作为默认启动时调用的模型文件, 切记添加参数`--model models/ov/save_model.xml` 作为第一次启动驴车进行数据采集的参数,否则会报错. 当采集好数据并训练完成后,可以将模型路径替换为训练好的新模型路径来实现自动改驾驶. 
+
 在终端输入:
 
 ```
-python manage.py drive
+python manage.py drive --model models/ov/save_model.xml
 ```
 * 驴车启动画面:
-![donkey_start](./images/donkey_start.png)
+![donkeyRun1](./images/dks3/DonkeyRun1.jpg)
+![donkeyRun2](./images/dks3/DonkeyRun2.jpg)
 
-驴车启动后,终端会被占用,如果需要终止驴车运行请在键盘按下: `ctrl + c`
+驴车启动后,终端会被占用,并快速输出`TXXSYY` 类型的数据,其表示当前接受到的油门和转向信息.
+例如: `T80S20` 表示T(Throttle)当前油门达到80%, S(Steering)当前转向达到20%, 如果需要终止驴车运行请在键盘按下: `ctrl + c`
 
 如果进程没有终止,可以执行`sudo ./kill_process.sh` 脚本来执行自动杀进程操作.
 
@@ -94,8 +107,7 @@ python manage.py drive
 
 ### 网页端控制
 
-默认情况下,驴车在启动后会通过tornado 库实现一个简单的web页面,该页面可用于监控驴车行驶状态及网页端控制,可通过浏览器访问驴车IP
-地址及端口来获取.
+默认情况下,驴车在启动后会通过tornado 库实现一个简单的web页面,该页面可用于监控驴车行驶状态及网页端控制,可通过浏览器访问驴车IP 地址及端口来获取.
 
 * 网页端打开
 
@@ -104,151 +116,72 @@ http://[驴车当前IP地址]:8887 端口
 ```
 PS: 请替换`[ ]` 括起来的内容为当前驴车的IP.
 
+
 > 默认端口: 8887 
-> 驴车在驾驶过程中,会不断通过摄像头采集图片信息并整合当前的角度和油门值存储在`data`目录.
+> 驴车在驾驶过程中,会不断通过摄像头采集图片信息并整合当前的角度和油门值存储在`data`目录中,每次执行`python manage.py drive --model [MODELES_PATH]` 命令时,都会在 data 目录中产生一个 tub_数字_年_月_日的目录,并将采集的图片和油门转向的归一化数值存储在其中,这里注意区分tub后面的数字部分,每一次跑车采集数据,这个数字部分的内容都会发生变化,这个数字会影响你后期训练数据打包进程,因此大家请务必注意. 
+> 在开始驾驶 RC 车之前,请点击网页端的`Start Recording` 按钮, 就可以通过遥控器操作 RC 车在赛道上进行数据采集了.
+如图所示: 
+![webaccess1](./images/dks3/WebAccess1.jpg)
+![webaccess2](./images/dks3/WebAccess2.jpg)
 > 在执行终端中可以通过键盘输入: CTRL + C 结束采集. 
+![InterruptProgram](./images/dks3/InteruptProgram.jpg)
 
-### 压缩打包数据 
+### 压缩打包数据上传云服务器 
 
-数据采集完成后,可以在本地训练或者通过将数据上传到Azure 云端进行训练, 可以加快训练进程,减少训练所需要的时间,也可以通过本地训练,但是时间较长不推荐.
+数据采集完成后,可以在本地训练或者通过将数据上传到Azure 云端服务器进行训练, 可以加快训练进程,减少训练所需要的时间, 并且在S3 赛季中的云端服务器已经部署了 DevOps的 Pipeline 环境,操作更简洁方便.
 
-```
-cd /home/donkeycar/projects/vinocar/ 
-tar -czvf data.tar.gz  data/ 
-ls  
-```
+> 为了方便打包上传tub 数据, 在每台驴车的 mycar 项目目录中都有一个名为:
+`upload_data.sh`的 shell 脚本,该脚本提供了对`data`目录中`tub`目录进行打包和进行上传的操作, 为了减少上传时间,请确保`data`目录中有且只有一个`tub`目录的数据,否则整个`data`目录上传时间会很长. 如果想保留其他的`tub`数据,请将其备份到别处.例如用`mv`命令移动到一个特定的目录中保存. 
+> 如下图所示:
+![TrunkData1](./images/dks3/TrunkData1.jpg)
+![TrunkData2](./images/dks3/TrunkData2.jpg)
+![TrunkData3](./images/dks3/TrunkData3.jpg)
 
-> 如果有 data.tar.gz 的红色压缩包就好. 
-
-### 上传云主机 
-
-* 通过`scp`命令拷贝数据至Azure云主机.
+> 打包数据上传: 在驴车的`mycar`目录中通过终端执行下面的脚本即可.  
 
 ```
-cd /home/donkeycar/projects/vinocar/
-scp -P 50001 -i [DONKEYCAR_KEY.pem] data.tar.gz azureuser@[AZURE_SERVER_IP]:/home/azureuser/mycar/
-```
--P 指定端口号, 请确认云端服务器提供端口信息,可以咨询裁判或者工作人员.
--i 指定登陆秘钥. 请替换`[]`中的秘钥内容, 默认路径为"/home/donkeycar/hackautoXX-gpu.pem", 请在驴车用户属主目录中确认.
-请酌情替换`[AZURE_SERVER_IP]`的内容为您队伍所使用的 Azure 云主机 IP 地址.
- 
-### 训练方法
-
-* 通过ssh 命令登陆到Azure云服务器,其中需要使用对应的KEY,和对应的端口登陆,其中部分云主机开放的端口是`50000`, 部分是`50001`, 请根据实际对应的服务器数据添加. 
-
-```
-ssh -p 50001 -i [DONKEYCAR_KEY.pem]  azureuser@[AZURE_SERVER_IP]
-```
--p 注意这里是小写`p`, 同样指定端口信息
--i 执行驴车登陆云平台秘钥. 默认路径在:`/home/donkeycar/hackautoXX-gpu.pem`, 请自行检查.
-请酌情替换`[]`内容为当前驴车的秘钥信息和队伍所使用的 Azure 云平台服务器地址信息.
-
-* 进入项目目录并解压采集的数据并在 Azure GPU服务器上训练Keras 模型.  
-
-```
-cd /home/azureuser/mycar
-tar -xf data.tar.gz  
-donkey train --tub data/[TUB_SUB_DATA]/  --model models/[MODEL_NAME].h5
-```
-PS: 请根据实际情况替换`[]`内部信息.
-
-> 请确认数据包加压到`/home/azureuser/mycar/data` 目录.
-
-### 创建Tensorflow 模型路径和 openVINO 模型路径
-
-```
-cd /home/azureuser/mycar/models/
-mkdir tf
-mkdir ov 
+./upload_data.sh
 ```
 
-训练完成后会在驴车实例的 models 目录中生成模型文件. 由于默认训练出来的模型类型是:`keras`, 需要转换为`tensorflow`类型,再转换成`OpenVINO`能识别的类型.
+> 当看到传输进度条完成并显示"job done" 表示传输完成,请联系 alex 或者昊男进行云端 pipeline 一键解压训练操作.
 
-* 转换模型: 将模型从 Keras 转换为 Tensorflow.
+![PackUpload1](./images/dks3/PackUpload1.jpg)
+![PackUpload2](./images/dks3/PackUpload2.jpg)
+
+### 从云服务器下载模型
+当云端 pipeline 流程跑完后,模型就会自动训练完成,并完成转换打包等一系列操作,在驴车本地终端中执行下面的命令即可进行模型的下载和解压.
+![DownloadUnzip1](./images/dks3/DownloadUnzip1.jpg)
+![DownloadUnzip2](./images/dks3/DownloadUnzip2.jpg)
 
 ```bash
-cd /home/azureuser/mycar/
-python convert_keras2tf.py --from models/[MODEL_NAME].h5 --to models/tf/
+./download_models.sh
 ```
-
-其中转换脚本convert_keras2tf.py 示例代码:
-
-```python
-import tensorflow as tf
-import os
-import sys
-
-'''
---from: keras mode path .h5 e.g. /PATH/TO/[YOUR_CAR_INSTANCE]/models/[YOUR_MODEL_NAME].h5
---to: converted openvino path to e.g. /PATH/TO/[YOUR_CAR_INSTANCE]/models/[OPENVINO_IR_MODEL_PATH]/
-'''
-os.environ['TF_XLA_FLAGS'] = '--tf_xla_enable_xla_devices'
-
-if __name__ == '__main__':
-    args = sys.argv[1:]
-    if len(args) == 4:
-        if args[0] == '--from':
-            model = tf.keras.models.load_model(args[1])
-        if args[2] == '--to':
-            tf.saved_model.save(model,args[3])
-```
-
-* 将Tensorflow模型转换成OpenVINO模型. 
-
-> PS: 这里需要手动添加一个 库: defusedxml
-
-```bash
-yes | conda install defusedxml
-python /opt/intel/openvino_2021/deployment_tools/model_optimizer/mo.py --saved_model_dir models/tf --input_shape [1,120,160,3] -o models/ov --data_type FP16
-```
-查看一下数据结构:
-
-```bash
-sudo apt -y install tree
-tree .
-
-```
-
-![IR_MO](./images/ov_model.png)
-
-* 打包压缩OpenVINO模型文件
-
-```bash
-cd /home/azureuser/mycar/models/
-tar -czvf ov.tar.gz ov/
-```
-
-* 退出Azure GPU 服务器,回到驴车本地环境中.
-```
-exit
-```
-
-> 注意: 目前需要保证当前环境已经回到 DonkeyCar 环境中.可以通过检查主机名和登陆用户判断
-
-* 从 Azure 云服务器下载 OpenVINO 模型文件并解压.
-
-```bash
-cd /home/donkeycar/projects/vinocar/
-scp -P50001 -i [DONKEYCAR_KEY.pem] azureuser@[AZUER_SERVER_IP]:/home/azureuser/mycar/models/ov.tar.gz models/
-cd models
-tar -xf ov.tar.gz
-```
-PS: 这里请酌情替换`[]`括号内的内容为当前驴车的秘钥和云端服务器 IP 地址.
-
-模型存放位置如下图
-
-![模型位置](./images/donkey_ov.png)
-
-
+> 解压出来的目录结构为: model_当前驴车主机名_上传时tub 数据集的名称 
+> 例如: `model_DKS3-1_tub_1_23_01_13` 其含义:
+* `DKS3-1` 表示 DKS3-1 号车, DKS3-2表示2号车.
+* `tub_1_23_01_13` 表示上传时tub名为`tub_1_23_01_13`的数据集. 
 ### 自动驾驶
 
 * 网页控制
+终端执行:
+
+```
+python manage.py drive --model [MODEL_PATH]
+```
 
 通过浏览器访问`http://[驴车当前IP地址]:8887`, 替换驴车地址信息为驴车设备地址信息.
 
-先点击页面下方的: `start vehicle`按钮然后在 `Mode & Pilot` 选择`Local Pilot`, 表示本地自动驾驶, 然后将枪控上的`CH3` 按钮按下并确保`CH4` 推到最右侧(靠近舵轮方向), 如果由于采集数据时油门不够导致的无法自动驾驶,可以尝试将`CH4`拨到中间档位, 使得油门控制扳机仍然能够控制驴车油门,但是转向仍然使用自动驾驶, 如果`CH4`完全拨到左边(靠近握把位置),则枪控完全接管驴车的油门和转向,进入人工控制模式.
-驾驶终止请在终端上按下 `Ctrl + C`, 并及时按下枪控`CH3` 按钮来锁定油门.
+![AutoPilot2](./images/dks3/AutoPilot2.jpg)
 
+![AutoPilot3](./images/dks3/AutoPilot3.jpg)
+
+1. 先点击页面上方的`Full Auto`, 表示自动驾驶.
+2. 将枪控上的`CH4`  推到最右侧(靠近舵轮方向), 然后点击`CH3` 解锁离合器(Disable ARM).
+3. 如果想要实现自动转向,手动油门,可以将`CH4`拨到中间档位, 使得油门控制扳机仍然能够控制驴车油门, 转向仍然使用自动驾驶.
+4. 如果`CH4`完全拨到左边(靠近握把位置),则枪控完全接管驴车的油门和转向,进入人工控制模式.
+
+> PS: 驾驶终止请在终端上按下 `Ctrl + C`, 并及时按下枪控`CH3` 按钮来锁定油门.
+> 如果出现车辆跑飞的情况,请及时按下`CH3` 按钮来保证避免车辆脱离掌控.
 > 以上所有操作需要在拥有硬件驴车和 azure 云服务器的情况下进行.
 
 ---
