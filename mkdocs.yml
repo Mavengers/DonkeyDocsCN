@@ -8,6 +8,7 @@ nav:
   - 硬件架构: hardware/hardware_arch.md
   - 机械架构: mechanic/mechanic_arch.md
   - 软件架构: software/software_arch.md
-  - 线下比赛: operation/dk_process.md
+  - 线下比赛: operation/online.md
+  - 操作流程: operation/dk_process.md
   - 进阶技巧: operation/drive_tips.md
   - 关于我们: aboutus.md
