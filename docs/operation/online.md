@@ -1,28 +1,21 @@
 # 比赛规则
 
-![Silde1](./images/Slide1.png)
+![1673631943047](image/online/1673631943047.png)
 
-![Silde2](./images/Slide2.jpeg)
-
-![Silde4](./images/Slide4.png)
+## 计分系统
 
 ![Silde5](./images/Slide5.png)
 
----
-
-## 评分规则
-![rules01](./images/rules01.png)
-![rules02](./images/rules02.png)
+![1673632746355](./image/online/1673632746355.png)
 
 ---
 
-## 比赛安排
-![rules04](./images/bisaianpai.jpeg)
+## 得分规则
+
+![1673632733108](image/online/1673632733108.png)
 
 ---
 
-## 奖项评选
-![rules03](./images/rules03.png)
+## 活动流程
 
----
-
+![1673633040096](./image/online/1673633040096.png)
