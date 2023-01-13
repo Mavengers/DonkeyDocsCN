@@ -31,8 +31,10 @@
 # 操作流程 
 * 驴车开机
  
-> 注意! 注意! 注意!  重要的问题强调三遍!!!
+| 注意! 注意! 注意!  重要的问题强调三遍!!!
+
 > 操作不规范, 驴友两行泪!
+
 > 下面几条内容请大家一定要注意并互相转告!
 > 1. 车辆在调试过程中一定要保证车辆稳定的停放在车架上,四轮必须离开桌面.
 > 2. 在调试过程中,请确保`CH3` 保持在锁定状态(灯灭掉的状态)
@@ -47,7 +49,7 @@
 ![ConnectBattery](./images/dks3/ConnectBattery.png)
 4. 按下自锁开关旁边的轻触按键给下位机供电,并且给电调上电.
 ![TurnOnVechicle](./images/dks3/TurnOnVehicle.png)
-
+>
 ```
 PS: 建议此时将 HDMI 线缆接入LPD3 HDMI 接口, 并接入键盘鼠标等外设,也可以通过SSH 远程登录驴车环境进行命令行操作.
 ```
@@ -133,11 +135,14 @@ PS: 请替换`[ ]` 括起来的内容为当前驴车的IP.
 > 为了方便打包上传tub 数据, 在每台驴车的 mycar 项目目录中都有一个名为:
 `upload_data.sh`的 shell 脚本,该脚本提供了对`data`目录中`tub`目录进行打包和进行上传的操作, 为了减少上传时间,请确保`data`目录中有且只有一个`tub`目录的数据,否则整个`data`目录上传时间会很长. 如果想保留其他的`tub`数据,请将其备份到别处.例如用`mv`命令移动到一个特定的目录中保存. 
 > 如下图所示:
+
 ![TrunkData1](./images/dks3/TrunkData1.jpg)
+
 ![TrunkData2](./images/dks3/TrunkData2.jpg)
+
 ![TrunkData3](./images/dks3/TrunkData3.jpg)
 
-> 打包数据上传: 在驴车的`mycar`目录中通过终端执行下面的脚本即可.  
+> 每次只需要保留最后一次采集的数据集即可, 然后就可以进行打包数据上传, 在驴车的`mycar`目录中通过终端执行下面的脚本文件:  
 
 ```
 ./upload_data.sh
@@ -146,11 +151,14 @@ PS: 请替换`[ ]` 括起来的内容为当前驴车的IP.
 > 当看到传输进度条完成并显示"job done" 表示传输完成,请联系 alex 或者昊男进行云端 pipeline 一键解压训练操作.
 
 ![PackUpload1](./images/dks3/PackUpload1.jpg)
+
 ![PackUpload2](./images/dks3/PackUpload2.jpg)
 
 ### 从云服务器下载模型
 当云端 pipeline 流程跑完后,模型就会自动训练完成,并完成转换打包等一系列操作,在驴车本地终端中执行下面的命令即可进行模型的下载和解压.
+
 ![DownloadUnzip1](./images/dks3/DownloadUnzip1.jpg)
+
 ![DownloadUnzip2](./images/dks3/DownloadUnzip2.jpg)
 
 ```bash
@@ -168,6 +176,9 @@ PS: 请替换`[ ]` 括起来的内容为当前驴车的IP.
 ```
 python manage.py drive --model [MODEL_PATH]
 ```
+例如: `python manage.py drive --model model_DKS3-1_tub_1_23_01_13/save_model.xml`
+
+模型路径就是从服务器上下载下来并解压的模型文件.
 
 通过浏览器访问`http://[驴车当前IP地址]:8887`, 替换驴车地址信息为驴车设备地址信息.
 
