@@ -46,7 +46,7 @@
 3. 接入电池后 LattePanda Delta 3(下文中将使用 LPD3 代替) 会自动开机并接入钛星人路由器提供的网络环境.
 ![ConnectBattery](./images/dks3/ConnectBattery.png)
 4. 按下自锁开关旁边的轻触按键给下位机供电,并且给电调上电.
-![TurnOnVechicle](./images/dks3/TurnOnVechicle.png)
+![TurnOnVechicle](./images/dks3/TurnOnVehicle.png)
 
 ```
 PS: 建议此时将 HDMI 线缆接入LPD3 HDMI 接口, 并接入键盘鼠标等外设,也可以通过SSH 远程登录驴车环境进行命令行操作.
