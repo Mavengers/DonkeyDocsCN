@@ -70,7 +70,7 @@ ifconfig wlan0
 在终端输入:
 
 ```
-python manage.py drive --model models/ov/save_model.xml
+python manage.py drive --model models/ov/saved_model.xml
 ```
 * 驴车启动画面:
 ![donkeyRun1](./images/dks3/DonkeyRun1.jpg)
@@ -152,7 +152,7 @@ PS: 请替换`[ ]` 括起来的内容为当前驴车的IP.
 ```
 python manage.py drive --model [MODEL_PATH]
 ```
-例如: `python manage.py drive --model model_DKS3-1_tub_1_23_01_13/save_model.xml`
+例如: `python manage.py drive --model model_DKS3-1_tub_1_23_01_13/ov_tub_1_23_01_13/saved_model.xml`
 
 模型路径就是从服务器上下载下来并解压的模型文件.
 
