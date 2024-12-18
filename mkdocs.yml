@@ -1,14 +1,20 @@
 ---
-site_name: 漂移驴车S3赛季中文操作说明
+site_name: 漂移驴车中文操作说明
 theme: readthedocs
 
 nav:
-  - 首页: index.md
-  - 赛事背景: race_background/race_bg_info.md 
-  - 硬件架构: hardware/hardware_arch.md
-  - 机械架构: mechanic/mechanic_arch.md
-  - 软件架构: software/software_arch.md
-  - 线下比赛: operation/online.md
-  - 操作流程: operation/dk_process.md
-  - 进阶技巧: operation/drive_tips.md
-  - 关于我们: aboutus.md
+  - S4赛季:
+    - 首页: 'season4/index.md'
+    - 赛事背景: 'season4/background.md' 
+    - 硬件架构: 'season4/hardware_arch.md'
+
+  - S3赛季:
+    - 首页: index.md
+    - 赛事背景: race_background/race_bg_info.md 
+    - 硬件架构: hardware/hardware_arch.md
+    - 机械架构: mechanic/mechanic_arch.md
+    - 软件架构: software/software_arch.md
+    - 线下比赛: operation/online.md
+    - 操作流程: operation/dk_process.md
+    - 进阶技巧: operation/drive_tips.md
+    - 关于我们: aboutus.md
